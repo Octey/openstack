@@ -287,6 +287,15 @@ EOL
                         'sentAs'      => 'device_name',
                         'description' => 'Describes a path to the device for the volume you want to use to boot the server.',
                     ],
+                    'uuid' => [
+                        'type' => self::STRING_TYPE,
+                        'description' => 'volume UUID',
+                    ],
+                    'volumeSize' => [
+                        'type' => self::INT_TYPE,
+                        'sentAs' => 'volume_size',
+                        'description' => 'volume size',
+                    ],
                 ]
             ],
         ];
