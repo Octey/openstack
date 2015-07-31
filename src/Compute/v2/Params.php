@@ -193,6 +193,15 @@ EOL
         ];
     }
 
+    public function keyName()
+    {
+        return [
+            'type' => self::STRING_TYPE,
+            'sentAs' => 'key_name',
+            'description' => 'The name of the keypair.',
+        ];
+    }
+
     public function availabilityZone()
     {
         return [

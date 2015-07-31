@@ -42,6 +42,7 @@ class Server extends AbstractResource implements
     public $userId;
     public $adminPass;
     public $taskState;
+    public $keyName;
 
     protected $resourceKey = 'server';
     protected $resourcesKey = 'servers';
@@ -55,6 +56,7 @@ class Server extends AbstractResource implements
         'user_id'    => 'userId',
         'security_groups' => 'securityGroups',
         'OS-EXT-STS:task_state' => 'taskState',
+        'key_name' => 'keyName',
     ];
 
     /**
