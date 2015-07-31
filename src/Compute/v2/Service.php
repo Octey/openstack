@@ -119,4 +119,47 @@ class Service extends AbstractService
         $image->populateFromArray($options);
         return $image;
     }
+
+    /**
+     * List keypairs.
+     *
+     * @param array    $options {@see \OpenStack\Compute\v2\Api::getKeypairs}
+     * @param callable $mapFn   A callable function that will be invoked on every iteration of the list.
+     *
+     * @return \Generator
+     */
+    public function listKeypairs(array $options = [], callable $mapFn = null)
+    {
+        $operation = $this->getOperation($this->api->getKeypairs(), $options);
+        return $this->model('Keypair')->enumerate($operation, $mapFn);
+    }
+
+    /**
+     * Retrieve a keypair object without calling the remote API. Any values provided in the array will populate the
+     * empty object, allowing you greater control without the expense of network transactions. To call the remote API
+     * and have the response populate the object, call {@see Keypair::retrieve}.
+     *
+     * @param array $options An array of attributes that will be set on the {@see Keypair} object. The array keys need to
+     *                       correspond to the class public properties.
+     *
+     * @return \OpenStack\Compute\v2\Models\Keypair
+     */
+    public function getKeypair(array $options = [])
+    {
+        $keypair = $this->model('Keypair');
+        $keypair->populateFromArray($options);
+        return $keypair;
+    }
+
+    /**
+     * Import a new keypair resource.
+     *
+     * @param array $options {@see \OpenStack\Compute\v2\Api::postKeypair}
+     *
+     * @return \OpenStack\Compute\v2\Models\Keypair
+     */
+    public function importKeypair(array $options)
+    {
+        return $this->model('Keypair')->create($options);
+    }
 }
