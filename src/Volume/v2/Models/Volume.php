@@ -25,6 +25,12 @@ class Volume extends AbstractResource implements Listable, Retrievable
     public $links;
     public $attachments;
     public $volume_image_metadata;
+    public $volumeType;
+
+	protected $aliases = [
+        'created_at'  => 'createdAt',
+        'volume_type'  => 'volumeType',
+    ];
 
     protected $resourceKey = 'volume';
     protected $resourcesKey = 'volumes';

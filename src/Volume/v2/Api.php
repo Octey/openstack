@@ -232,6 +232,10 @@ DESC
                 'size' => [
                     'type' => 'integer',
                 ],
+                'volume_type' => [
+                    'type' => 'string',
+                    'required' => false,
+                ],
             ]
         ];
     }
@@ -283,14 +287,4 @@ DESC
         ];
     }
 
-
-    private function isRequired(array $param)
-    {
-        return array_merge($param, ['required' => true]);
-    }
-
-    private function notRequired(array $param)
-    {
-        return array_merge($param, ['required' => false]);
-    }
 }
