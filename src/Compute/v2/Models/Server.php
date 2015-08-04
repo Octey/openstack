@@ -300,4 +300,25 @@ class Server extends AbstractResource implements
     {
         $this->execute($this->api->deleteServerMetadataKey(), ['id' => $this->id, 'key' => $key]);
     }
+
+    /**
+     * Get server's VNC console
+     *
+     * @return mixed
+     */
+    public function getConsole()
+    {
+        $response = $this->execute($this->api->getConsole(), ['id' => $this->id, 'type' => 'novnc']);
+        return $response->json()['console']['url'];
+    }
+    /**
+     * Get server's console output
+     *
+     * @return mixed
+     */
+    public function getConsoleOutput($length)
+    {
+        $response = $this->execute($this->api->getConsoleOutput(), ['id' => $this->id, 'length' => $length]);
+        return $response->json()['output'];
+    }
 }

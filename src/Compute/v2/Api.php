@@ -474,4 +474,30 @@ class Api extends AbstractApi
             ]
         ];
     }
+
+
+    public function getConsoleOutput()
+    {
+        return [
+            'method' => 'POST',
+            'path' => 'servers/{id}/action',
+            'jsonKey' => 'os-getConsoleOutput',
+            'params' => [
+                'id' => $this->params->urlId('server'),
+                'length' => $this->params->consoleLength(),
+            ],
+        ];
+    }
+    public function getConsole()
+    {
+        return [
+            'method' => 'POST',
+            'path' => 'servers/{id}/action',
+            'jsonKey' => 'os-getVNCConsole',
+            'params' => [
+                'id' => $this->params->urlId('server'),
+                'type' => $this->params->consoleType(),
+            ],
+        ];
+    }
 }

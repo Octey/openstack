@@ -386,4 +386,20 @@ EOL
             'required' => true,
         ];
     }
+
+    public function consoleLength()
+    {
+        return [
+            'type' => self::INT_TYPE,
+            'required' => false,
+        ];
+    }
+
+    public function consoleType()
+    {
+        return [
+            'type' => self::STRING_TYPE,
+            'required' => true,
+        ];
+    }
 }
