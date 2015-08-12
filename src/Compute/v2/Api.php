@@ -500,4 +500,78 @@ class Api extends AbstractApi
             ],
         ];
     }
+
+    public function getSecurityGroups()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-security-groups',
+            'params' => [
+                'limit'   => $this->params->limit(),
+            ],
+        ];
+    }
+
+
+    public function getSecurityGroup()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-security-groups/{id}',
+            'params' => ['id' => $this->params->urlId('os-security-group')]
+        ];
+    }
+
+    public function getSecurityGroupRule()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-security-group-rules/{id}',
+            'params' => ['id' => $this->params->urlId('os-security-group-rule')]
+        ];
+    }
+
+    public function deleteSecurityGroupRule()
+    {
+        return [
+            'method' => 'DELETE',
+            'path'   => 'os-security-group-rules/{id}',
+            'params' => ['id' => $this->params->urlId('os-security-group-rule')]
+        ];
+    }
+
+    public function postSecurityGroupRule()
+    {
+        return [
+            'method' => 'POST',
+            'path'   => 'os-security-group-rules',
+            'jsonKey' => 'security_group_rule',
+            'params' => [
+                'fromPort' => [
+                    'type' => 'integer',
+                    'sentAs' => 'from_port',
+                    'required' => true,
+                ],
+                'toPort' => [
+                    'type' => 'integer',
+                    'sentAs' => 'to_port',
+                    'required' => true,
+                ],
+                'ipProtocol' => [
+                    'type' => 'string',
+                    'sentAs' => 'ip_protocol',
+                    'required' => true,
+                ],
+                'cidr' => [
+                    'type' => 'string',
+                    'required' => true,
+                ],
+                'parentGroupId' => [
+                    'type' => 'string',
+                    'sentAs' => 'parent_group_id',
+                    'required' => true,
+                ],
+            ]
+        ];
+    }
 }

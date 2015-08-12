@@ -162,4 +162,42 @@ class Service extends AbstractService
     {
         return $this->model('Keypair')->create($options);
     }
+
+    /**
+     * List security gorups.
+     *
+     * @param array    $options {@see \OpenStack\Compute\v2\Api::getSecurityGroups}
+     * @param callable $mapFn   A callable function that will be invoked on every iteration of the list.
+     *
+     * @return \Generator
+     */
+    public function listSecurityGroups(array $options = [], callable $mapFn = null)
+    {
+        $operation = $this->getOperation($this->api->getSecurityGroups(), $options);
+        return $this->model('SecurityGroup')->enumerate($operation, $mapFn);
+    }
+
+    /**
+     * Create a new security group rule resource.
+     *
+     * @param array $options {@see \OpenStack\Compute\v2\Api::postSecurityGroupRule}
+     *
+     * @return \OpenStack\Compute\v2\Models\SecurityGroupRule
+     */
+    public function createSecurityGroupRule(array $options)
+    {
+        return $this->model('SecurityGroupRule')->create($options);
+    }
+
+    /**
+     * Delete a security group rule resource.
+     *
+     * @param array $options {@see \OpenStack\Compute\v2\Api::deleteSecurityGroupRule}
+     *
+     * @return \OpenStack\Compute\v2\Models\SecurityGroupRule
+     */
+    public function deleteSecurityGroupRule()
+    {
+        return $this->model('SecurityGroupRule')->delete();
+    }
 }
