@@ -51,6 +51,11 @@ the marker value, and begin the list from there.
 DESC
     ];
 
+    public function __construct()
+    {
+        $this->params = new Params();
+    }
+
     public function getSnapshots()
     {
         return [
@@ -283,6 +288,42 @@ DESC
             'path'   => 'limits',
             'params' => [
                 'limit'   => $this->limitParam,
+            ],
+        ];
+    }
+
+    public function getQuotaSet()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-quota-sets/{id}',
+            'params' => ['id' => $this->params->urlId('quota-set')]
+        ];
+    }
+
+    public function putQuotaSet()
+    {
+        return [
+            'method'  => 'PUT',
+            'path'    => 'os-quota-sets/{id}',
+            'jsonKey' => 'quota_set',
+            'params'  => [
+                'id'   => $this->params->urlId('quota-set'),
+                'gigabytes' => [
+                    'type' => 'integer',
+                    'sentAs' => 'gigabytes',
+                    'required' => false,
+                ],
+                'snapshots' => [
+                    'type' => 'integer',
+                    'sentAs' => 'snapshots',
+                    'required' => false,
+                ],
+                'volumes' => [
+                    'type' => 'integer',
+                    'sentAs' => 'volumes',
+                    'required' => false,
+                ],
             ],
         ];
     }

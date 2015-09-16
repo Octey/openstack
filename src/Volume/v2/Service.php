@@ -108,4 +108,11 @@ class Service extends AbstractService
         $limits->populateFromArray($options);
         return $limits;
     }
+
+    public function getQuotaSet($id)
+    {
+        $quotaSet = $this->model('QuotaSet');
+        $quotaSet->populateFromArray(['id' => $id]);
+        return $quotaSet;
+    }
 }
