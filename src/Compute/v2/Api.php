@@ -574,4 +574,65 @@ class Api extends AbstractApi
             ]
         ];
     }
+
+    public function getQuotaSet()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => 'os-quota-sets/{id}',
+            'params' => ['id' => $this->params->urlId('quota-set')]
+        ];
+    }
+
+    public function putQuotaSet()
+    {
+        return [
+            'method'  => 'PUT',
+            'path'    => 'os-quota-sets/{id}',
+            'jsonKey' => 'quota_set',
+            'params'  => [
+                'id'   => $this->params->urlId('quota-set'),
+                'cores' => [
+                    'type' => 'integer',
+                    'sentAs' => 'cores',
+                    'required' => false,
+                ],
+                'fixedIps' => [
+                    'type' => 'integer',
+                    'sentAs' => 'fixed_ips',
+                    'required' => false,
+                ],
+                'floatingIps' => [
+                    'type' => 'integer',
+                    'sentAs' => 'floating_ips',
+                    'required' => false,
+                ],
+                'instances' => [
+                    'type' => 'integer',
+                    'sentAs' => 'floating_ips',
+                    'required' => false,
+                ],
+                'keyPairs' => [
+                    'type' => 'integer',
+                    'sentAs' => 'key_pairs',
+                    'required' => false,
+                ],
+                'ram' => [
+                    'type' => 'integer',
+                    'sentAs' => 'ram',
+                    'required' => false,
+                ],
+                'securityGroups' => [
+                    'type' => 'integer',
+                    'sentAs' => 'security_groups',
+                    'required' => false,
+                ],
+                'securityGroupRules' => [
+                    'type' => 'integer',
+                    'sentAs' => 'security_group_rules',
+                    'required' => false,
+                ],
+            ],
+        ];
+    }
 }

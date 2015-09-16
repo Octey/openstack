@@ -48,4 +48,12 @@ class Service extends AbstractService
     {
         return $this->model('Network', ['id' => $id]);
     }
+
+
+    public function getQuotaSet($id)
+    {
+        $quotaSet = $this->model('QuotaSet');
+        $quotaSet->populateFromArray(['id' => $id]);
+        return $quotaSet;
+    }
 }

@@ -88,4 +88,30 @@ class Api implements ApiInterface
             'params' => ['id' => $this->params->urlId('network')]
         ];
     }
+
+    public function getQuotaSet()
+    {
+        return [
+            'method' => 'GET',
+            'path'   => $this->pathPrefix . '/quotas/{id}',
+            'params' => ['id' => $this->params->urlId('quota-set')]
+        ];
+    }
+
+    public function putQuotaSet()
+    {
+        return [
+            'method'  => 'PUT',
+            'path'    => $this->pathPrefix . '/quotas/{id}',
+            'jsonKey' => 'quota',
+            'params'  => [
+                'id'   => $this->params->urlId('quota-set'),
+                'floatingIp' => [
+                    'type' => 'integer',
+                    'sentAs' => 'floatingip',
+                    'required' => false,
+                ],
+            ],
+        ];
+    }
 }

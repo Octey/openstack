@@ -106,7 +106,7 @@ class Service extends AbstractService
     /**
      * Retrieve an image object without calling the remote API. Any values provided in the array will populate the
      * empty object, allowing you greater control without the expense of network transactions. To call the remote API
-     * and have the response populate the object, call {@see Image::retrieve}.
+     * and have the response populate the object, call {@see BareImage::retrieve}.
      *
      * @param array $options An array of attributes that will be set on the {@see Image} object. The array keys need to
      *                       correspond to the class public properties.
@@ -199,5 +199,12 @@ class Service extends AbstractService
     public function deleteSecurityGroupRule()
     {
         return $this->model('SecurityGroupRule')->delete();
+    }
+
+    public function getQuotaSet($id)
+    {
+        $quotaSet = $this->model('QuotaSet');
+        $quotaSet->populateFromArray(['id' => $id]);
+        return $quotaSet;
     }
 }
